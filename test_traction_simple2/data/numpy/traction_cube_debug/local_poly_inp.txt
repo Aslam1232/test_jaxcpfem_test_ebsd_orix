@@ -1,0 +1,2 @@
+# eps sigma_zz_cell0 sigma_vm_cell0
+2.000000e-04 5.859740e+03 0.000000e+00

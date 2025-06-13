@@ -1,0 +1,2 @@
+# eps sigma_poly_avg sigma_poly_vm
+2.000000e-04 2.842786e+03 0.000000e+00
