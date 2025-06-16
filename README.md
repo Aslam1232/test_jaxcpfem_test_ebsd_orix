@@ -50,7 +50,7 @@ Ce pipeline possède son propre environnement Conda.
 
 ### Lancer le pipeline EBSD
 
-Une fois l'environnement `ebsd-pipeline-env` activé, placez-vous dans le dossier `ctf_to_msh` et exécutez le script principal.
+Une fois l'environnement `ebsd_env` activé, placez-vous dans le dossier `ctf_to_msh` et exécutez le script principal.
 
 ```bash
 # Exemple d'utilisation
