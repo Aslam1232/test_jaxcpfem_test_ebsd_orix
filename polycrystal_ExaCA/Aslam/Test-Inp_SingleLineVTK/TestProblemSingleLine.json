@@ -1,0 +1,59 @@
+{
+   "ExaCAVersion": "2.1.0-dev", 
+   "ExaCACommitHash": "6e24577d31ad904b1c6c2597436b932603fe3499", 
+   "KokkosVersion": "4.0.0", 
+   "InputFile": "Inp_SingleLine.json", 
+   "TimeStepOfOutput": 23000,
+   "SimulationType": "FromFile",
+   "GrainOrientationFile": "/home/chj/ExaCA_Workspace/install/exaca/share/ExaCA/GrainOrientationVectors.csv",
+   "Domain": {
+      "Nx": 199,
+      "Ny": 45,
+      "Nz": 33,
+      "CellSize": 2.5e-06,
+      "TimeStep": 8.25e-08,
+      "XBounds": [0.0005025,0.0009975],
+      "YBounds": [-5.5e-05,5.5e-05],
+      "ZBounds": [-8e-05,0],
+      "NumberOfLayers": 1,
+      "LayerOffset": 8
+   },
+   "Nucleation": {
+      "Density": 1e+14,
+      "MeanUndercooling": 5,
+      "StDevUndercooling": 0.5,
+      "VolFractionNucleated": 0.0183966
+   },
+   "TemperatureData": {
+       "TemperatureFiles": ["Temperatures/Line.txt"]
+   },
+   "Substrate": {
+       "MeanSize": 25,
+       "MeanBaseplateGrainSize": 25,
+       "MeanPowderGrainSize": 2.5
+   },
+   "InterfacialResponse": {
+       "Function": "0",
+       "A": -1.0302e-07,
+       "B": 0.00010533,
+       "C": 0.0022196,
+       "D": 0,
+       "FreezingRange": 210
+   },
+   "NumberMPIRanks": 1,
+   "Decomposition": {
+       "SubdomainYSize": [45],
+       "SubdomainYOffset": [0]
+   },
+   "Timing": {
+       "Runtime": 9.53594,
+       "InitRunOutputBreakdown": [0.4706,9.03519,0.0301498],
+       "MaxMinInitTime": [0.4706,0.4706],
+       "MaxMinNucleationTime": [0.00539614,0.00539614],
+       "MaxMinSteeringVectorCreationTime": [5.56708,5.56708],
+       "MaxMinCellCaptureTime": [3.45466,3.45466],
+       "MaxMinGhostExchangeTime": [0,0],
+       "MaxMinOutputTime": [0.0301498,0.0301498]
+   }
+
+}
