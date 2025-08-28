@@ -1,75 +1,56 @@
-# test_jaxcpfem_test_ebsd_orix
-# Étude de l'Anisotropie en Fabrication Additive par CPFEM
+# JAX-CPFEM EBSD Pipeline
 
-Ce dépôt contient le code développé dans le cadre d'un projet sur la modélisation de l'anisotropie mécanique des pièces issues de la fabrication additive via la méthode CPFEM.
+Pipeline de modélisation CPFEM pour l'analyse de microstructures EBSD et simulations de plasticité cristalline.
 
 ## Contexte Technique et Attribution
 
 Ce projet s'appuie sur le framework open-source [JAX-FEM](https://github.com/deepmodeling/jax-fem). Les simulations de plasticité cristalline sont basées sur les concepts et des éléments de code issus du solveur **[JAX-CPFEM](https://github.com/SuperkakaSCU/JAX-CPFEM)**. Les scripts présents dans ce dépôt sont des adaptations et des cas d'étude spécifiques.
 
-## Structure du Dépôt
+
+## Structure
 
 ```
-.
-├── ctf_to_msh/             # Pipeline de traitement des données EBSD
-└── test_traction_simple2/  # Scripts pour les simulations CPFEM (à déplacer)
+├── ctf_to_msh/              # Pipeline EBSD vers maillage
+├── nano_indentation_test/   # Simulation nano-indentation (non fonctionnel - problème contact)
+├── polycrystal_cuivre/      # Simulation sur maillage EBSD
+├── polycrystal_ExaCA/       # Simulation à partir de données ExaCA
+├── test_traction_simple2/   # Test de traction simple
+└── Installation_JAX_FEM_CPFEM_Neper.pdf   # Guide d'installation
 ```
 
-## Installation et Prérequis
+## Installation
 
 ### Prérequis
-- Avoir cloné ce dépôt sur votre machine locale.
-- [Miniconda](https://docs.conda.io/en/latest/miniconda.html) ou Anaconda.
-- Git.
+- Miniconda/Anaconda
+- Git
 
-### Partie 1 : Pipeline EBSD (`ctf_to_msh`)
+### 1. Pipeline EBSD
+```bash
+cd ctf_to_msh
+conda env create -f ../ebsd_env.yml
+conda activate ebsd-env
+```
 
-Ce pipeline possède son propre environnement Conda.
+### 2. Écosystème JAX-FEM/CPFEM
+Suivre le guide : `Installation_JAX_FEM_CPFEM_Neper.pdf`
 
-1.  **Placez-vous dans le dossier `ctf_to_msh` du projet.**
-
-2.  **Créez et activez l'environnement Conda :**
-    ```bash
-    conda env create -f environment.yml
-    conda activate ebsd-pipeline-env 
-    ```
-
-### Partie 2 : Simulations CPFEM (`jax_cpfem_simulations`)
-
-1.  **Installez l'écosystème de simulation :**
-    L'exécution de ces simulations requiert une installation complète de JAX-FEM, JAX-CPFEM et Neper. La procédure d'installation est détaillée dans le rapport pdf.
-
-2.  **Déplacez les scripts de simulation :**
-    **Cette étape est indispensable.** Copiez le dossier `jax_cpfem_simulations` de ce projet dans le dossier `applications/` de votre installation locale de JAX-FEM.
-    ```bash
-    # Exemple de commande (à adapter selon vos chemins)
-    cp -r ./jax_cpfem_simulations /chemin/vers/votre/installation/de/jax-fem/applications/
-    ```
+### 3. Configuration simulations
+Copier les dossiers de simulation dans `jax-fem/applications/`
 
 ## Utilisation
 
-### Lancer le pipeline EBSD
-
-Une fois l'environnement `ebsd_env` activé, placez-vous dans le dossier `ctf_to_msh` et exécutez le script principal.
-
+### Pipeline EBSD
 ```bash
-# Exemple d'utilisation
-python main_convex.py 
+conda activate ebsd-env
+cd ctf_to_msh
+python main_convex.py
 ```
 
-### Lancer une simulation CPFEM
+### Simulations
+```bash
+conda activate jax-fem-env
+cd /chemin/vers/jax-fem
 
-Après avoir configuré l'environnement et déplacé les scripts :
-
-1.  **Activez l'environnement de simulation (`jax-fem-env`).**
-
-2.  **Placez-vous à la racine de votre installation de JAX-FEM.**
-    ```bash
-    cd /chemin/vers/votre/installation/de/jax-fem
-    ```
-
-3.  **Lancez la simulation** comme un module Python :
-    ```bash
-    # Exemple pour le test de traction uniaxiale
-    python -m applications.jax_cpfem_simulations.main_ect
-    ```
+# Exemple : simulation cuivre
+python -m applications.polycrystal_cuivre.main_traction_cuivre
+```
